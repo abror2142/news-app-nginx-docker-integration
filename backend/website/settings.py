@@ -25,7 +25,15 @@ SECRET_KEY = 'django-insecure-@-88+81cph)1mb!o3-1!_eb^-q&05qf(@1c=z-uxrs54z2$k%4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# gitpod origin allowance
+
+ALLOWED_HOSTS = [
+    '8000-gitpoddemos-votingapp-6y7kdx8oxpa.ws-us116.gitpod.io'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-gitpoddemos-votingapp-6y7kdx8oxpa.ws-us116.gitpod.io'
+]
 
 
 # Application definition
@@ -37,6 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    'rest_framework',
+    'corsheaders',
+
+    'accounts',
+    'news.apps.NewsConfig',
 ]
 
 MIDDLEWARE = [
@@ -47,12 +61,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'rest_framework',
-    'corsheaders',
-
-    'api.apps.ApiConfig',
-    'news.apps.NewsConfig',
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -127,3 +135,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Custom User Model
+
+AUTH_USER_MODEL = 'accounts.User'
