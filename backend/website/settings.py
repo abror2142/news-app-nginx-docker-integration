@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,19 +21,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@-88+81cph)1mb!o3-1!_eb^-q&05qf(@1c=z-uxrs54z2$k%4'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 # gitpod origin allowance
 
 ALLOWED_HOSTS = [
-    '8000-gitpoddemos-votingapp-6y7kdx8oxpa.ws-us116.gitpod.io'
+    '8000-gitpoddemos-votingapp-6y7kdx8oxpa.ws-us116.gitpod.io',
+    '8000-abror2142-newsappnginxd-50gh7hld2u7.ws-us116.gitpod.io',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-gitpoddemos-votingapp-6y7kdx8oxpa.ws-us116.gitpod.io'
+    'https://8000-gitpoddemos-votingapp-6y7kdx8oxpa.ws-us116.gitpod.io',
+    'https://8000-abror2142-newsappnginxd-50gh7hld2u7.ws-us116.gitpod.io',
 ]
 
 
@@ -89,8 +92,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB', 'postgres'),
+        'HOST': config('DB_HOST', 'localhost'),
+        'PORT': config('DB_PORT', '5432'),
+        'USER': config('POSTGRES_USER', 'postgres'),
+        'PASSWORD': config('POSTGRES_PASSWORD')
     }
 }
 
