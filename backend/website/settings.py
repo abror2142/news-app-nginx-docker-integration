@@ -92,12 +92,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('POSTGRES_DB', 'postgres'),
-        'HOST': config('DB_HOST', 'localhost'),
-        'PORT': config('DB_PORT', '5432'),
-        'USER': config('POSTGRES_USER', 'postgres'),
-        'PASSWORD': config('POSTGRES_PASSWORD')
+        'ENGINE': config('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': config('DB_NAME', 'db.sqlite3'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD')
     }
 }
 
